@@ -1,0 +1,82 @@
+#include <stdio.h>
+
+
+struct Student {
+    int id;
+    char name[50];
+    int age;
+};
+
+struct Student students[100];
+int count = 0;
+
+void addStudent() {
+    printf("Geli ID: ");
+    scanf("%d", &students[count].id);
+
+    printf("Geli Magaca: ");
+    scanf("%s", students[count].name);
+
+    printf("Geli Da'da: ");
+    scanf("%d", &students[count].age);
+
+    count++;
+    printf("Arday waa lagu daray si guul ah!\n");
+}
+
+void viewStudents() {
+    if (count == 0) {
+        printf("Ma jiro arday la diiwaan geliyay.\n");
+        return;
+    }
+
+    for (int i = 0; i < count; i++) {
+        printf("\nID: %d", students[i].id);
+        printf("\nMagac: %s", students[i].name);
+        printf("\nDa'da: %d\n", students[i].age);
+    }
+}
+
+void searchStudent() {
+    int id, found = 0;
+    printf("Geli ID-ga ardayga: ");
+    scanf("%d", &id);
+
+    for (int i = 0; i < count; i++) {
+        if (students[i].id == id) {
+            printf("\nArday waa la helay:");
+            printf("\nMagac: %s", students[i].name);
+            printf("\nDa'da: %d\n", students[i].age);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Arday lama helin.\n");
+    }
+}
+
+int main() {
+    int choice;
+
+    do {
+        printf("\n- Student Management System -\n");
+        printf("1. Ku dar arday\n");
+        printf("2. Arag ardayda\n");
+        printf("3. Raadi arday\n");
+        printf("0. Ka bax\n");
+        printf("Dooro: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: addStudent(); break;
+            case 2: viewStudents(); break;
+            case 3: searchStudent(); break;
+            case 0: printf("Waad baxday.\n"); break;
+            default: printf("Doorasho khaldan.\n");
+        }
+    } while (choice != 0);
+
+    return 0;
+}
